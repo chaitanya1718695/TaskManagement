@@ -1,0 +1,54 @@
+/* Navbar.css */
+
+.nav-link {
+  color: #ffffff !important; /* Ensure text is white */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nav-link:hover {
+  color: #007bff; /* Change color on hover */
+  text-decoration: none; /* Remove underline on hover */
+}
+
+.nav-link.active {
+  color: #007bff; /* Highlight active link */
+}
+
+.nav-item {
+  margin-bottom: 1rem; /* Space between items */
+}
+
+.navbar-header {
+  margin-bottom: 1.5rem; /* Space below the header */
+}
+
+/* Optional: Styling for dropdown menu if used */
+.custom-dropdown-menu {
+  width: 200px; /* Adjust as needed */
+  border-radius: 0.25rem; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+.custom-dropdown-menu .dropdown-item {
+  transition: background-color 0.2s ease, color 0.2s ease; /* Smooth transition */
+}
+
+.custom-dropdown-menu .dropdown-item:hover,
+.custom-dropdown-menu .dropdown-item:focus {
+  background-color: #343a40; /* Darker background on hover/focus */
+  color: #ffffff; /* White text on hover/focus */
+}
+
+.custom-dropdown-menu .dropdown-item.active {
+  background-color: #007bff; /* Blue background for active item */
+  color: #ffffff; /* White text for active item */
+}
+
+/* Optional: Adjust padding and margin of the menu */
+.custom-dropdown-menu .dropdown-item {
+  padding: 0.75rem 1.25rem; /* Adjust padding */
+}
+
+.custom-dropdown-menu .dropdown-item:first-child {
+  border-top: 1px solid #dee2e6; /* Border between items */
+}

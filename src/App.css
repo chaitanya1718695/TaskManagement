@@ -1,0 +1,22 @@
+/* src/App.css */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.dropdown {
+  margin: 20px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+.canvas {
+  margin: auto;
+}
