@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import {
   Chart as ChartJS,
   BarElement,
-  CategoryScale,
+  CategoryScale, 
   LinearScale,
   Title,
   Tooltip,
@@ -43,7 +43,7 @@ function View() {
         borderColor: ['#19692c', '#b38400'],
         borderWidth: 1,
       },
-    ],
+    ], 
   };
 
   // Function to toggle task status

@@ -1,0 +1,115 @@
+/* Container styles */
+.ocr-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.ocr-container h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+/* File input and buttons */
+input[type="file"] {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 300px; /* Ensure file input is responsive */
+}
+
+.convert-button,
+.clear-button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Ensure buttons are full width on small screens */
+  max-width: 200px; /* Limit button width on larger screens */
+}
+
+.convert-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.clear-button {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Image preview */
+.ocr-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 20px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* OCR Result textarea */
+.ocr-result {
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+  padding: 10px;
+  font-family: monospace;
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  overflow-y: auto;
+  text-align: center; /* Center the text horizontally */
+  
+  /* Flexbox for vertical and horizontal centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5; /* Adjust for better readability */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .ocr-container {
+    padding: 10px;
+  }
+  
+  .ocr-result {
+    height: 150px; /* Reduce textarea height on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .ocr-container h1 {
+    font-size: 1.5em;
+  }
+  
+  input[type="file"] {
+    width: 100%;
+  }
+  
+  .convert-button,
+  .clear-button {
+    max-width: 100%; /* Buttons take full width on small screens */
+  }
+  
+  .ocr-result {
+    height: 120px; /* Adjust height for very small screens */
+  }
+}

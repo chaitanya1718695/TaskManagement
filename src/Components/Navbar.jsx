@@ -24,10 +24,17 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="nav-item mb-2">
-          {/* <Link to="/assigned-tasks" className="nav-link text-white hover-link">
-            Assigned Tasks
-          </Link> */}
+          <Link to="/ocrcomponent" className="nav-link text-white hover-link">
+           Ocr
+          </Link>
         </li>
+    
+    
+        {/* <li className="nav-item mb-2">
+          <Link to="/employetasks" className="nav-link text-white hover-link">
+          Admin Login
+          </Link>
+        </li> */}
         {/* Uncomment and use these if needed */}
         {/* <li className="nav-item mb-2">
           <Link to="/setting" className="nav-link text-white hover-link">

@@ -6,12 +6,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import App from './App';
 import UserReducer from './Components/UserReducer';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import tasksReducer from './Login/Userslice';
 
 
 // Configure the Redux store
 const store = configureStore({ 
   reducer: {
     users: UserReducer,
+    tasks: tasksReducer,
   },
 });
 

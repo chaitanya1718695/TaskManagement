@@ -4,14 +4,18 @@ import { addUser } from "./UserReducer";
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import { FaBuilding, FaUsers, FaCode } from 'react-icons/fa'; // Example icons
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Create() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState(""); 
   const [registrationDate, setRegistrationDate] = useState(""); 
-  const [status, setStatus] = useState("Active");
+
   const [department, setDepartment] = useState("");
+  const [password, setPassword] = useState(""); // Added password state
+  const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
 
   const { usersList, departments } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -26,18 +30,30 @@ function Create() {
     if (!role) newErrors.role = "Role is required";
     if (!registrationDate) newErrors.registrationDate = "Registration date is required";
     if (!department) newErrors.department = "Department is required";
+    if (!password) newErrors.password = "Password is required"; // Validate password
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
+  }; 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      const nextId = usersList.length > 0 ? usersList[usersList.length - 1].id + 1 : 1;
-      dispatch(
-        addUser({ id: nextId, name, email, role, registrationDate, status, department })
-      );
-      navigate("/");
+      const existingUser = usersList.find(user => user.email === email || user.password === password);
+      if (existingUser) {
+        // Redirect to the employee's task page
+        navigate(`/assigned-tasks/${existingUser.id}`);
+      } else {
+        // Add new user
+        const nextId = usersList.length > 0 ? usersList[usersList.length - 1].id + 1 : 1;
+        dispatch(
+          addUser({ id: nextId, name, email, role, registrationDate, department, password }) // Include password in dispatch
+        );
+        // Redirect to the new employee's task page
+        navigate(`/assigned-tasks/${nextId}`);
+      }
+    } else {
+      // Show error toast
+      toast.error("Please correct the errors in the form");
     }
   };
 
@@ -107,7 +123,8 @@ function Create() {
             />
             {errors.registrationDate && <div className="invalid-feedback">{errors.registrationDate}</div>}
           </div>
-          <div className="mb-3">
+
+          {/* <div className="mb-3">
             <label htmlFor="status" className="form-label">Status:</label>
             <select
               name="status"
@@ -118,7 +135,8 @@ function Create() {
               <option value="Active">Active</option>
               <option value="Inactive">Inactive</option>
             </select>
-          </div>
+          </div> */}
+
           {/* New Department dropdown with icons */}
           <div className="mb-3">
             <label htmlFor="department" className="form-label">Department:</label>
@@ -131,8 +149,31 @@ function Create() {
             />
             {errors.department && <div className="invalid-feedback">{errors.department}</div>}
           </div>
+          {/* New Password field */}
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password:</label>
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                className={`form-control ${errors.password ? "is-invalid" : ""}`}
+                placeholder="Enter password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+          </div>
           <button type="submit" className="btn btn-info w-100 mt-3">Submit</button>
         </form>
+        
       </div>
     </div>
   );
